@@ -6,7 +6,7 @@ class RepresentativesController < ApplicationController
   end
 
   def show
-    index = params[:representative_id]
+    index = params[:id]
     @rep = Representative.find(index)
   end
 end

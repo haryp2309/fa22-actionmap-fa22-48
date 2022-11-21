@@ -10,7 +10,7 @@ def get_officials(address)
 end
 
 describe 'Representative' do
-  context 'when I convert Civic API response to representative objects' do
+  context 'when I convert Civic API response to representative objects multiple times' do
     result = get_officials('Berkeley')
 
     Representative.delete_all
@@ -27,6 +27,26 @@ describe 'Representative' do
 
     it 'does not create duplicate entries if the representative already exists' do
       expect(new_count).to eq(initial_count)
+    end
+  end
+
+  context 'when I create a representative entry' do
+    result = get_officials('Berkeley')
+
+    Representative.civic_api_to_representative_params(result)
+
+    rep = Representative.first
+
+    it 'contains the fields contact_address' do
+      expect { rep.contact_address }.not_to raise_error
+    end
+
+    it 'contains the fields political_party' do
+      expect { rep.political_party }.not_to raise_error
+    end
+
+    it 'contains the fields photo_url' do
+      expect { rep.photo_url }.not_to raise_error
     end
   end
 end

@@ -1,0 +1,32 @@
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-md-8 offset-md-2">
+            <div class="row">
+                <img data-src="holder.js/200x200" alt="" width="200" height="200">
+                <div class="col">
+                    <h1><%= @rep.name %></h1>
+                    <% ["title", "ocdid"].each do |attr| %>
+                        <% if @rep[attr] %>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">
+                                    <b>
+                                        <%= attr.titleize %>: 
+                                    </b>
+                                </label>
+                                <div class="col-sm-2 col-form-label">
+                                    <%= @rep[attr] %>
+                                </div>
+                            </div>
+                        <% end %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    
+</div>

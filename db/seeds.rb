@@ -28,7 +28,7 @@ end
 SeedData.representatives.each do |rep|
   rep_model = Representative.create(
     name:            rep[:name],
-    contact_address: rep[:address],
+    contact_address: rep[:address]&.map { |a| a.stringify_keys },
     political_party: rep[:political_party],
     photo_url:       rep[:photo_url]
   )

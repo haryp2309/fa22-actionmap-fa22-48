@@ -4,17 +4,16 @@ on:
   - pull_request
   - workflow_dispatch
   
-env:
-  RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
 
 jobs:
-  # TODO: Environment variables?
   build:
+    env:
+      RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
     runs-on: '${{ matrix.os }}'
     strategy:
       matrix:
         os:
-          - ubuntu-18.04
+          - ubuntu-latest
     steps:
       - name: Cache multiple paths
         uses: actions/cache@v2

@@ -1,7 +1,8 @@
 # frozen_string_literal: true
+
 Given /the representatives exist/ do |representatives_table|
   representatives_table.hashes.each do |representative|
-    Representative.create!(name: representative[:name], ocdid: representative[:divisionId], 
+    Representative.create!(name: representative[:name], ocdid: representative[:divisionId],
                            title: representative[:office])
   end
 end

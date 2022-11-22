@@ -4,10 +4,11 @@
 
         <div class="col-md-8 offset-md-2">
             <div class="row">
-                <img data-src="holder.js/200x200" alt="" width="200" height="200">
+                
+                <img src="<%= @rep.photo_url %>" alt="" width="200" height="200" style="object-fit: cover;">
                 <div class="col">
                     <h1><%= @rep.name %></h1>
-                    <% ["title", "ocdid"].each do |attr| %>
+                    <% ["title", "political_party", "contact_address"].each do |attr| %>
                         <% if @rep[attr] %>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">
@@ -16,7 +17,23 @@
                                     </b>
                                 </label>
                                 <div class="col-sm-2 col-form-label">
-                                    <%= @rep[attr] %>
+                                    <% if attr == "contact_address" %>
+                                        <% @rep[attr].each do |addr| %>
+                                            <p>
+                                                <% ["line1", "line2", "line3", "city"].each do |addr_attr| %>
+                                                    <div class="row">
+                                                        <%= addr[addr_attr] %>
+                                                    </div>
+                                                <% end %>
+                                                <div class="row">
+                                                    <%= addr["state"] %>
+                                                    <%= addr["zip"] %>
+                                                </div>
+                                            </p>
+                                        <% end %>
+                                    <% else %>
+                                        <%= @rep[attr] %>
+                                    <% end %>
                                 </div>
                             </div>
                         <% end %>

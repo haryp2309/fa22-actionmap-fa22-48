@@ -8,7 +8,7 @@
                 <img src="<%= @rep.photo_url %>" alt="" width="200" height="200" style="object-fit: cover;">
                 <div class="col">
                     <h1><%= @rep.name %></h1>
-                    <% ["title", "political_party", "contact_address"].each do |attr| %>
+                    <% ["title", "political_party", "contact_address", "ocdid"].each do |attr| %>
                         <% if @rep[attr] %>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">

@@ -1,0 +1,45 @@
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-md-8 offset-md-2">
+            <div class="row">
+                
+                <img src="<%= @rep.photo_url %>" alt="" width="200" height="200" style="object-fit: cover;">
+                <div class="col">
+                    <h1><%= @rep.name %></h1>
+                    <% ["title", "political_party", "contact_address", "ocdid"].each do |attr| %>
+                        <% if @rep[attr] %>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">
+                                    <b>
+                                        <%= attr.titleize %>: 
+                                    </b>
+                                </label>
+                                <div class="col-sm-2 col-form-label">
+                                    <% if attr == "contact_address" %>
+                                        <% @rep[attr].each do |addr| %>
+                                            <p>
+                                                <% ["line1", "line2", "line3", "city"].each do |addr_attr| %>
+                                                    <div class="row">
+                                                        <%= addr[addr_attr] %>
+                                                    </div>
+                                                <% end %>
+                                                <div class="row">
+                                                    <%= addr["state"] %>
+                                                    <%= addr["zip"] %>
+                                                </div>
+                                            </p>
+                                        <% end %>
+                                    <% else %>
+                                        <%= @rep[attr] %>
+                                    <% end %>
+                                </div>
+                            </div>
+                        <% end %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

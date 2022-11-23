@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Representative < ApplicationRecord
-  has_many :news_items, dependent: :delete_all, through: :representative_addresses
+  has_many :news_items, dependent: :delete_all
   serialize :contact_address, Array
 
   def self.civic_api_to_representative_params(rep_info)

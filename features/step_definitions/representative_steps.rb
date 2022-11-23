@@ -13,6 +13,8 @@ Then /^I should see the representatives: (.*)$/ do |representative_list|
   end
 end
 
-When /^I navigate to the (.* County) in (.*)$/ do |_county, _state|
-  visit search_representatives_path(address: 'San Francisco County CA')
+When /^I navigate to the (.* County) in (.*)$/ do |county, state|
+  state = State.find_by(name: state)
+  address = county + " " + state.symbol
+  visit search_representatives_path(address: address)
 end

@@ -1,0 +1,13 @@
+{
+    "buildpacks": [
+        {
+            "url": "heroku/nodejs"
+        },
+        {
+            "url": "heroku/ruby"
+        }
+    ],
+    "scripts": {
+        "postdeploy": "bundle exec rake db:migrate db:seed"
+    }
+}

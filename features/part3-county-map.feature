@@ -13,4 +13,3 @@ Scenario: Clicking on San Francisco county should show 26 representatives
   Given I am on the home page
   When I navigate to the San Francisco County in California
   Then I should see the representatives: "Joseph R. Biden","Kamala D. Harris","Alex Padilla" 
-

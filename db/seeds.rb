@@ -53,3 +53,9 @@ SeedData.events.each do |event|
     end_time:    event[:end_time]
   )
 end
+
+SeedData.issues.each do |issue_name|
+  Issue.create(
+    name: issue_name
+  )
+end

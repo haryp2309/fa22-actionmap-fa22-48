@@ -5,5 +5,6 @@ FactoryBot.define do
     title { 'Interessting news' }
     link { 'fake.news.do.not.follow.this.link.com' }
     representative { create(:representative) }
+    issue { create(:issue) }
   end
 end

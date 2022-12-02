@@ -2,6 +2,7 @@
 
 class NewsItem < ApplicationRecord
   belongs_to :representative
+  belongs_to :issue
   has_many :ratings, dependent: :delete_all
 
   def self.find_for(representative_id)

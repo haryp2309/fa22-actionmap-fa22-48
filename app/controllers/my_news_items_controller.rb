@@ -38,8 +38,8 @@ class MyNewsItemsController < SessionController
   end
 
   def index
-    representative_id = params[:news_item]["representative_id"]
-    issue_id = params[:news_item]["issue_id"]
+    representative_id = params[:news_item]['representative_id']
+    issue_id = params[:news_item]['issue_id']
     render :search, error: 'An error occurred when searching for the news item.'
   end
 
@@ -56,17 +56,16 @@ class MyNewsItemsController < SessionController
   end
 
   def set_issues_list
-    @issues_list = ["Free Speech", "Immigration", "Terrorism", "Social Security and
-    Medicare", "Abortion", "Student Loans", "Gun Control", "Unemployment",
-    "Climate Change", "Homelessness", "Racism", "Tax Reform", "Net
-    Neutrality", "Religious Freedom", "Border Security", "Minimum Wage",
-    "Equal Pay"]
+    @issues_list = ['Free Speech', 'Immigration', 'Terrorism', "Social Security and
+    Medicare", 'Abortion', 'Student Loans', 'Gun Control', 'Unemployment',
+                    'Climate Change', 'Homelessness', 'Racism', 'Tax Reform', "Net
+    Neutrality", 'Religious Freedom', 'Border Security', 'Minimum Wage',
+                    'Equal Pay']
   end
 
   def set_news_item
     @news_item = NewsItem.find(params[:id])
   end
-
 
   # Only allow a list of trusted parameters through.
   def news_item_params

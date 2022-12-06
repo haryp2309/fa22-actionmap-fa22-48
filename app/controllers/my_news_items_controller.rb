@@ -38,8 +38,8 @@ class MyNewsItemsController < SessionController
   end
 
   def index
-    representative_id = params[:news_item]['representative_id']
-    issue_id = params[:news_item]['issue_id']
+    #representative_id = params[:news_item]['representative_id']
+    #issue_id = params[:news_item]['issue_id']
     render :search, error: 'An error occurred when searching for the news item.'
   end
 

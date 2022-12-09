@@ -16,8 +16,7 @@ Representative.destroy_all
 
 SeedData.states.each { |state| State.create state }
 
-SeedData.states.each do |state|
-  state = State.find_by(symbol: state[:symbol])
+State.all.each do |state|
   county_filename = "lib/assets/counties_fips_data/#{state[:symbol].downcase}.json"
   File.open(Rails.root.join(county_filename), 'r:UTF-8') do |f|
     state.counties = JSON.parse(f.read, object_class: County)

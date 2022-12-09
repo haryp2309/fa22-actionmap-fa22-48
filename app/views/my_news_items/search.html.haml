@@ -10,8 +10,8 @@
         Select an Article and Rate:
         %br/
         %br/
-        - @top.each do |news|
-            %form
+        %form
+            - @top.each do |news|
                 %input#title{name: "news options", type: "radio"}/
                 Title: #{news.title}
                 %br

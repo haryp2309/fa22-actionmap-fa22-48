@@ -1,3 +1,21 @@
 .row.mt-2
     .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
-        %h1.text-center Edit News Item
+        Edit News Item
+        %br
+        Reresentative = #{@rep}
+        %br
+        Issue = #{@issue_id}
+        %br
+        %br
+        Select an Article and Rate:
+        %br/
+        %br/
+        - @top.each do |news|
+            %form
+                %input#title{name: "news options", type: "radio"}/
+                Title: #{news.title}
+                %br
+                %br
+                Description: #{news.description}
+                %br
+                %br

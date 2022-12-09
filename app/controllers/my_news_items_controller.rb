@@ -1,3 +1,5 @@
+require 'news-api'
+require 'cgi'
 # frozen_string_literal: true
 
 class MyNewsItemsController < SessionController
@@ -38,8 +40,13 @@ class MyNewsItemsController < SessionController
   end
 
   def index
-    # representative_id = params[:news_item]['representative_id']
-    # issue_id = params[:news_item]['issue_id']
+    rep_id = params[:news_item]['representative_id'].to_s
+    @rep = Representative.find(rep_id).name.to_s.split(' ')[-1].to_s
+    @issue_id = params[:news_item]['issue_id']
+    api_key = Rails.application.credentials[:GOOGLE_NEWS_API_KEY]
+    newsapi = News.new(api_key)
+    @q_val = CGI.escape(@rep + ' AND ' + @issue_id.split(' ').join(' AND ').to_s)
+    @top = newsapi.get_everything(q: @q_val, pagesize: 5)
     render :search, error: 'An error occurred when searching for the news item.'
   end
 

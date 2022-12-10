@@ -54,6 +54,8 @@ ActiveRecord::Schema.define(version: 2022_12_10_015048) do
     t.integer "stars_count"
     t.integer "news_item_id"
     t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "representatives", force: :cascade do |t|

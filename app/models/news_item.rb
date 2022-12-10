@@ -12,12 +12,13 @@ class NewsItem < ApplicationRecord
   end
 
   def self.import_google_news_object(google_news_obj, representative, issue)
-    NewsItem.new(
-      title:          google_news_obj.title,
-      link:           google_news_obj.url,
-      description:    google_news_obj.description,
-      representative: representative,
-      issue:          issue
-    )
+    NewsItem.find_by(link: google_news_obj.url) ||
+      NewsItem.create(
+        title:          google_news_obj.title,
+        link:           google_news_obj.url,
+        description:    google_news_obj.description,
+        representative: representative,
+        issue:          issue
+      )
   end
 end

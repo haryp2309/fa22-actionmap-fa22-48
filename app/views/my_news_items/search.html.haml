@@ -10,11 +10,11 @@
         Select an Article and Rate:
         %br/
         %br/
-        = form_for @news_item,  url: create_my_news_item_path, method: :post  do |f|
+        = form_for @news_item, url: create_my_news_item_path, method: :post do |f|
             .form-group.col
                 = f.hidden_field :representative_id, value: @news_item.representative_id
                 = f.hidden_field :issue_id, value: @news_item.issue_id
-                = f.collection_radio_buttons :json, @top, :json, :title  do |b|
+                = f.collection_radio_buttons :json, @top, :json, :title do |b|
                     .row
                         .col-xs
                             = b.radio_button

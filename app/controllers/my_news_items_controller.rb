@@ -11,8 +11,10 @@ class MyNewsItemsController < SessionController
 
   def new
     @news_item = NewsItem.new
-    @default_representative = params[:representative_id]
+    @default_representative = params[:rep_id]
   end
+
+  def edit; end
 
   def search
     @news_item = NewsItem.new(news_item_params)

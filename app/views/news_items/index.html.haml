@@ -4,7 +4,8 @@
             %h1.text-center Listing News Articles for #{@representative.name}
             .clearfix.my-4
                 .float-right
-                    = link_to new_my_news_item_path(params: {representative_id: @representative.id}), class: 'mx-1 btn btn-primary' do
+                    = link_to new_my_news_item_path(params: { rep_id: @representative.id }),
+                    class: 'mx-1 btn btn-primary' do
                         %i.fas.fa-plus
                         Add News Article
                     = link_to representatives_path, class: 'mx-1 btn btn-info' do

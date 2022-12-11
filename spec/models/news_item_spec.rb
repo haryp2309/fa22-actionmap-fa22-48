@@ -21,45 +21,4 @@ describe 'NewsItem' do
       expect(news_item.issue.name).to eq(issue.name)
     end
   end
-
-  context 'when I fetch news from Google News API' do
-    before do
-      @representative = create(:representative)
-      @issue = create(:issue)
-    end
-
-    let(:top_headlines) do
-      api_key = Rails.application.credentials[:GOOGLE_NEWS_API_KEY]
-      newsapi = News.new(api_key)
-      newsapi.get_top_headlines(sources: 'bbc-news', pageSize: 5)
-    end
-
-    let(:news_items) do
-      top_headlines.map do |google_news_obj|
-        NewsItem.import_google_news_object(google_news_obj, @representative, @issue)
-      end
-    end
-
-    it 'is able to convert GoogleNewsObject into a NewsItem' do
-      top_headlines.each do |google_news_obj|
-        expect { NewsItem.import_google_news_object(google_news_obj, @representative, @issue) }.not_to raise_error
-      end
-    end
-
-    it 'contains a title, link and description' do
-      news_items.each do |news_item|
-        expect(news_item.title).not_to be_nil
-        expect(news_item.link).not_to be_nil
-        expect(news_item.description).not_to be_nil
-      end
-    end
-
-    it 'does not add duplicate news items' do
-      top_headlines.map do |google_news_obj|
-        NewsItem.import_google_news_object(google_news_obj, @representative, @issue)
-        NewsItem.import_google_news_object(google_news_obj, @representative, @issue)
-      end
-      expect(NewsItem.all.count).to be(top_headlines.count)
-    end
-  end
 end

@@ -2,20 +2,31 @@
     .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
         Edit News Item
         %br
-        Reresentative = #{@rep}
+        Reresentative = #{@news_item.representative.name}
         %br
-        Issue = #{@issue_id}
+        Issue = #{@issue}
         %br
         %br
         Select an Article and Rate:
         %br/
         %br/
-        %form
-            - @top.each do |news|
-                %input#title{ name: 'news options', type: 'radio' }/
-                Title: #{news.title}
-                %br
-                %br
-                Description: #{news.description}
-                %br
-                %br
+        = form_with url: create_my_news_item_path, method: :post  do |f|
+            .form-group.col
+                = f.hidden_field :news_item_attributes, value: @news_item.to_json
+                = f.collection_radio_buttons :news_article, @top, :serialized_obj, :title do |b|
+                    .row
+                        .col-xs
+                            = b.radio_button
+                        .col
+                            %b
+                                = b.label
+                            %p
+                                = b.object.description
+            .form-group.row
+                .col-sm-2
+                    = label :rating, :stars_count, class: 'col-form-label'
+                .col-sm-10
+                    = select :rating, :stars_count, @available_ratings,
+                    class: 'form-control'
+            .actions
+                = f.submit 'Save', class: 'btn btn-primary'
